@@ -52,7 +52,8 @@ class User:
         self.age = age
         self.is_rewards_member  = False
         self.gold_card_points = 0
-        self.account = BankAccount(0.02)
+        self.all_accounts = []
+        self.all_accounts.append(BankAccount(0.02))
 
     def display_info(self):
         print("First Name:",self.first_name)
@@ -78,19 +79,30 @@ class User:
             print("not enough points :(")
         return self
 
-    def make_deposit(self, amount):
-        self.account.deposit(amount)
+    def make_deposit(self, amount, account):
+        account.deposit(amount)                 # removed self because I will be providing a specific account as the argurment
         return self
 
-    def make_withdrawal(self, amount):
-        self.account.withdraw(amount)
+    def make_withdrawal(self, amount, account):
+        account.withdraw(amount)                # removed self because I will be providing a specific account as the argurment
         return self
 
-    def display_user_balance(self):
-        self.account.display_account_info()
+    def display_user_balance(self, account):
+        account.display_account_info()          # removed self because I will be providing a specific account as the argurment
         return self
 
-
+    def transfer_money(self, amount, other_user):
+        print("\ntransfering money:", amount)  
+        if amount <= self.all_accounts[0].balance:
+            self.make_withdrawal(amount, self.all_accounts[0]).display_user_balance(self.all_accounts[0])
+            other_user.make_deposit(amount, other_user.all_accounts[0]).display_user_balance(other_user.all_accounts[0])
+        else:
+            print("Not enough funds!")
 # run code
 michael_user = User("Michael", "Stafford", "123@email.com", 99)
-michael_user.make_deposit(50).make_withdrawal(20).display_user_balance()
+default_account = michael_user.all_accounts[0]
+michael_user.make_deposit(60, default_account).make_withdrawal(20,default_account).display_user_balance(default_account)
+
+#transfer money
+sara_user = User("Sara", "White", "123@email.com", 44)
+michael_user.transfer_money(25, sara_user)
