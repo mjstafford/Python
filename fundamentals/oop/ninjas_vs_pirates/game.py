@@ -16,7 +16,7 @@ while michelangelo.health > 0 and jack_sparrow.health > 0:
             michelangelo.show_stats()
     elif option_jack == "2":
         if jack_sparrow.is_alive():
-            jack_sparrow()
+            jack_sparrow.heal()
             jack_sparrow.show_stats()
 
     print("1) Attack")
