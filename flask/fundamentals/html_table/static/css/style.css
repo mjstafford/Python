@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+thead {
+    background-color: lightgrey;
+}
+
+table {
+    border: 2px black solid;
+}
+
+th {
+    border-bottom: 2px black solid;
+
+}
+
+th,
+td {
+    padding-right: 3rem;
+    padding-left: 3rem;
+    text-align: center;
+}
