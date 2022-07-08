@@ -16,7 +16,7 @@ def checkers_rows_cols(rows,columns):
 
 @app.route("/<int:rows>/<int:columns>/<string:color1>/<string:color2>")
 def checkers_rows_cols_colors(rows,columns, color1, color2):
-    return render_template("index_rows_cols_colors.html", rows=rows, cols=(int(columns/2)), color1=color1, color2=color2)
+    return render_template("index_rows_cols_colors.html", rows=rows, cols=(columns), color1=color1, color2=color2)
 
 if __name__ == "__main__":
     app.run(debug=True)

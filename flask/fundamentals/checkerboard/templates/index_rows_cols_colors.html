@@ -32,10 +32,11 @@
 
 
     <!-- FROM VIDEO -->
+    <!-- updated the passed value which broke above code but now this one works -->
     <h1>Checkers - REFACTORED</h1>
     {% for i in range(rows) %}
     <div class="container">
-        {% for j in range(cols*2) %}
+        {% for j in range(cols) %}
         <div class="square" style="background-color: {{color1 if (i+j)%2 == 0 else color2}};"></div>
         {% endfor %}
     </div>
