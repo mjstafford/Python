@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <h1>counter</h1>
+    <h2>{{count}} times</h2>
+
+    <form action="/two">
+        <input type="submit" value="+2 visits" onclick="doubleVisit()">
+    </form>
+
+    <form action="/destroy_session">
+        <input type="submit" value="clear">
+    </form>
+
+    <form action="/this_many" method="post">
+        <label for="number">How many times would you like to increment?</label>
+        <input type="number" name="number" id="number">
+        <input type="submit" value="submit">
+    </form>
+
+    <script type=" text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
