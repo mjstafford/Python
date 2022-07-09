@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="game-container">
+        <h1>Welcome to the Great Number Game!!!</h1>
+        <h3>I am thinking of a number between 1 and 100</h3>
+
+        {% if guessed_number == "" %}
+        <span></span>
+        {% elif guessed_number < secret_number %} <div class="guess-block red">
+            <h2>Too Low!</h2>
+    </div>
+    {% elif guessed_number > secret_number%}
+    <div class="guess-block red">
+        <h2>Too High!</h2>
+    </div>
+    {% else %}
+    <div class="guess-block green">
+        <h2>You guessed it! the number was {{secret_number}}</h2>
+    </div>
+    {% endif %}
+
+    <div class="take-guess">
+        <h3>Take a guess</h3>
+        <form action="/guess" method="post">
+            <input type="text" name="num" id="num">
+            <input type="submit" value="Guess">
+        </form>
+    </div>
+    </div>
+</body>
+
+</html>
