@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div id="gold-count-block">
+        <h4>your gold: </h4>
+        <p>{{session["total"]}}</p>
+        <form action="/clear" method="post">
+            <input type="submit" value="Reset Gold">
+        </form>
+    </div>
+
+    <div id="main">
+        {% for key in building_dictionary %}
+        <div class="card">
+            <h2>{{key}}</h2>
+            <p>{{building_dictionary[key]}}</p>
+            <form action="/process_money" method="post">
+                <!-- where name is the key in the request.form and value is the value  -->
+                <input type="text" hidden name="building" value="{{key.lower()}}">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="activites">
+        <h4>Activites:</h4>
+        <div>
+            {% if "activities" in session%}
+            {{session['activities']|safe}}
+            <!-- needed the safe pipe since i'm adding html via a string -->
+
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+
+</html>
