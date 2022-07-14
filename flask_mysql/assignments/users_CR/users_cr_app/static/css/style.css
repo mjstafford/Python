@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(150, 150, 255);
+}
+
+td,
+th {
+    margin: 10px;
+    padding: 5px 10px;
+}
+
+th {
+    border-bottom: 2px solid black;
+}
