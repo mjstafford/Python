@@ -19,7 +19,8 @@ th {
 }
 
 /* form page */
-.form-header {
+.form-header,
+.show-header {
     display: flex;
     justify-content: space-around;
     align-items: center;

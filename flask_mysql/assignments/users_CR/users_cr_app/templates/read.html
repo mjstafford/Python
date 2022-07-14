@@ -18,6 +18,7 @@
             <th>Full Name</th>
             <th>EMAIL</th>
             <th>Created At</th>
+            <th>Actions</th>
         </thead>
         {% for user in all_users %}
         <tr>
@@ -25,6 +26,8 @@
             <td>{{user.first_name + " " + user.last_name}}</td>
             <td>{{user.email}}</td>
             <td>{{user.created_at.strftime("%B %d, %Y")}}</td>
+            <td><a href="/users/{{user.id}}">Show</a> | <a href="/edit_page/{{user.id}}">Edit</a> | <a
+                    href="/delete/{{user.id}}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

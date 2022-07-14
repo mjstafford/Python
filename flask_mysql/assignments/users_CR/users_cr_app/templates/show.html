@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>users CR App</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="show-header">
+        <h1>User {{user.id}}</h1>
+        <a href="/users">Home</a>
+    </div>
+    <div>
+        <p>Full Nmae: {{user.first_name + " " + user.last_name}}</p>
+        <p>Email: {{user.email}}</p>
+        <p>Created On: {{user.created_at.strftime("%B %d, %Y")}}</p>
+        <p>Last Updated On: {{user.updated_at.strftime("%B %d, %Y at %I:%M %p")}}</p>
+    </div>
+
+    <a href="/edit_page/{{user.id}}">Edit</a> | <a href=" /delete/{{user.id}}">Delete</a>
+</body>
+
+</html>

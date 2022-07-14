@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>users CR App</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="form-header">
+        <h1>Update User {{user.id}}</h1>
+        <a href="/users">Home</a>
+    </div>
+
+    <form action="/update/{{user.id}}" method="post">
+        <div>
+            <label for="first_name">First Name: </label>
+            <input type="text" name="first_name" id="first_name" value="{{user.first_name}}">
+        </div>
+        <div>
+            <label for="last_name">Last Name: </label>
+            <input type="text" name="last_name" id="last_name" value="{{user.last_name}}">
+        </div>
+        <div>
+            <label for="email">Email: </label>
+            <input type="text" name="email" id="email" value="{{user.email}}">
+        </div>
+        <input type="submit" value="Update">
+    </form>
+</body>
+
+</html>

@@ -31,4 +31,21 @@ class User:
         query = "INSERT INTO users(first_name, last_name, email) VALUES (%(first_name)s, %(last_name)s, %(email)s)"
         print("trying to save ...in model")
         return connectToMySQL('users_schema').query_db(query, data) # dont forget to add the data!
-    
+
+    @classmethod
+    def get_by_id(cls, data):
+        query = "SELECT * FROM users WHERE users.id=%(id)s"
+        print('trying to get by ID ... in model')
+        return  connectToMySQL('users_schema').query_db(query, data)[0] # always returns a list ... in this case list of 1
+
+    @classmethod
+    def delete_by_id(cls, data):
+        query = "DELETE FROM users WHERE users.id=%(id)s"
+        print("attempting to delete")
+        return connectToMySQL('users_schema').query_db(query,data)
+
+    @classmethod
+    def update_by_id(cls, data):
+        query = "UPDATE users SET first_name=%(first_name)s, last_name=%(last_name)s , email=%(email)s, updated_at=NOW() WHERE users.id=%(id)s;"
+        print('trying to update by ID ... in model')
+        return  connectToMySQL('users_schema').query_db(query, data)
