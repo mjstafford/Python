@@ -17,3 +17,20 @@ th {
 th {
     border-bottom: 2px solid black;
 }
+
+/* form page */
+.form-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+form {
+    width: 60%;
+    margin: 0 auto;
+}
+
+form>div {
+    display: flex;
+    flex-direction: column;
+}

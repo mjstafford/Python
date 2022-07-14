@@ -14,6 +14,14 @@ def create():
 
 @app.route('/users/new/process_new', methods=['POST'])
 def process_new_user():
+    # save the data from the form into a dictionary
+    data = {
+        "first_name": request.form["first_name"],
+        "last_name": request.form["last_name"],
+        "email": request.form["email"]
+    }
+
     # call on model to save the new user and then send back to main page
-    print("processing.... sending back to /users")
+    User.save(data)
+    print("processing.... trying to save in route")
     return redirect('/users')
