@@ -5,7 +5,7 @@ from users_cr_app.models.user import User
 
 @app.route('/users')
 def read():
-    return render_template('read.html', all_users=User.get_all())
+    return render_template('read.html', all_users=User.get_all(), count=0)
 
 
 @app.route('/users/new')

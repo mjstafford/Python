@@ -9,19 +9,26 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css') }}">
 </head>
 
-<body>
+<body class="read-container">
     <h1>All Users</h1>
 
     <table>
         <thead>
-            <th>ID</th>
+            <th>User ID</th>
             <th>Full Name</th>
-            <th>EMAIL</th>
+            <th>Email</th>
             <th>Created At</th>
             <th>Actions</th>
         </thead>
+
         {% for user in all_users %}
-        <tr>
+
+        {% if loop.index % 2 == 0 %}
+        <tr class="color1">
+            {% else %}
+        <tr class="color2">
+            {% endif %}
+            <!-- <p>{{ loop.index}}</p> -->
             <td>{{user.id}}</td>
             <td>{{user.first_name + " " + user.last_name}}</td>
             <td>{{user.email}}</td>

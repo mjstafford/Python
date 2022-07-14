@@ -8,30 +8,90 @@ body {
     background-color: rgb(150, 150, 255);
 }
 
+.create-content-contianer,
+.read-container,
+.show-container,
+.update-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.read-container>h1 {
+    margin: 10px 0;
+}
+
+/* read page */
+table {
+    /* remove automatic gaps between columns and row */
+    /* very helpful if you dont want ugly gaps when using background colors */
+    border-spacing: 0;
+}
+
 td,
 th {
     margin: 10px;
-    padding: 5px 10px;
+    padding: 2px 10px;
+    text-align: left;
+}
+
+thead {
+    background-color: rebeccapurple;
+    color: white;
+    border-collapse: collapse
 }
 
 th {
     border-bottom: 2px solid black;
 }
 
-/* form page */
+.color1 {
+    background-color: plum;
+}
+
+.color2 {
+    background-color: rgb(248, 219, 248);
+}
+
+
+
+/* create user page */
 .form-header,
 .show-header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    margin: 2rem 0;
 }
 
 form {
     width: 60%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 
 form>div {
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
+}
+
+form>input {
+    margin-top: 20px;
+    box-shadow: 2px 2px black;
+}
+
+/* show page */
+
+#show-body {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#show-bottom-links {
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
 }

@@ -9,19 +9,21 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css') }}">
 </head>
 
-<body>
+<body class="show-container">
     <div class="show-header">
         <h1>User {{user.id}}</h1>
         <a href="/users">Home</a>
     </div>
-    <div>
+    <div id="show-body">
         <p>Full Nmae: {{user.first_name + " " + user.last_name}}</p>
         <p>Email: {{user.email}}</p>
         <p>Created On: {{user.created_at.strftime("%B %d, %Y")}}</p>
         <p>Last Updated On: {{user.updated_at.strftime("%B %d, %Y at %I:%M %p")}}</p>
     </div>
 
-    <a href="/edit_page/{{user.id}}">Edit</a> | <a href=" /delete/{{user.id}}">Delete</a>
+    <div id="show-bottom-links">
+        <a href="/edit_page/{{user.id}}">Edit</a> | <a href=" /delete/{{user.id}}">Delete</a>
+    </div>
 </body>
 
 </html>
