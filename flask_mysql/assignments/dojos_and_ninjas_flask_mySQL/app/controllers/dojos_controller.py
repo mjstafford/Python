@@ -18,6 +18,9 @@ def dojo_show_page(id):
     # print(ninjas_result)
 
     #should have an if statement to double check if any results exist before the next line
+    if len(ninjas_result) == 0:
+        return "<h1>No Ninjas Enrolled<br><a href='/dojos'>Home</a></h1>"
+
     dojo_name = ninjas_result[0]["name"]     #this returns a record which i can access the dojo name from. would break with 0 ninjas at dojo.
     # print(dojo_name)
    
@@ -63,3 +66,12 @@ def dojo_show_page(id):
     # {k:v, etc...}
 # ]
 
+
+
+@app.route("/dojos/new", methods=["POST"])
+def create_dojo():
+    data = {
+        "name": request.form["name"]
+    }
+    Dojo.save(data)
+    return redirect("/dojos")

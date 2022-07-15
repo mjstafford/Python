@@ -22,3 +22,8 @@ class Dojo:
         }
         query= "SELECT * FROM dojos JOIN ninjas ON dojos.id = dojo_id WHERE dojo_id = %(id)s;"  #sanitize
         return connectToMySQL(DATABASE).query_db(query, data)
+
+    @classmethod
+    def save(cls, data):
+        query = "INSERT INTO dojos (name) VALUES (%(name)s);"
+        return connectToMySQL(DATABASE).query_db(query, data)
