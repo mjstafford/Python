@@ -20,9 +20,35 @@ input[type='submit']:hover {
     margin-bottom: 20px;
 }
 
+#left-col,
+#right-col {
+    background-color: #34393E;
+    color: white;
+    padding: 1rem;
+}
+
+#left-col>h1,
+#right-col>h1 {
+    color: #057AFE;
+}
+
+#right-col>p {
+    color: white;
+}
+
+
+#right-col>a {
+    color: white;
+    background-color: #057AFE;
+    padding: .25rem;
+    border-radius: .2rem;
+    text-decoration: none;
+}
+
 #left-col form>input[type='submit'] {
     display: block;
     margin-top: 20px;
+    background-color: #057AFE;
 }
 
 #all-dojo-container {
@@ -33,6 +59,12 @@ input[type='submit']:hover {
 
 #all-dojo-container>a {
     display: block;
+    color: white;
+    text-decoration: none;
+}
+
+#all-dojo-container>a:hover {
+    font-weight: bold;
 }
 
 /* #left-col>a {} */

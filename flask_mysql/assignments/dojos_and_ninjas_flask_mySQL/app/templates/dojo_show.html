@@ -10,7 +10,7 @@
 </head>
 
 <body id="show-container">
-    <h1>{{dojo_name}} Ninjas</h1>
+    <h1>{{current_dojo.name}} Ninjas</h1>
 
     <table id="show-table">
         <thead>
@@ -19,7 +19,7 @@
             <th>Age</th>
         </thead>
         <tbody>
-            {% for ninja in ninjas %}
+            {% for ninja in current_dojo.ninjas %}
             {% if loop.index % 2 == 0 %}
             <tr class="color1">
                 {% else %}

@@ -12,7 +12,7 @@ class Dojo:
 
     @classmethod
     def find_all(cls):
-        query = "SELECT * from dojos"
+        query = "SELECT * from dojos;"
         return connectToMySQL(DATABASE).query_db(query)
 
     @classmethod
