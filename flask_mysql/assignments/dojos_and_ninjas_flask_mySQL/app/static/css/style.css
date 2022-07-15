@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+input[type='submit']:hover {
+    cursor: pointer;
+}
+
 /* dojos page */
 
 .columns {
@@ -32,3 +36,49 @@
 }
 
 /* #left-col>a {} */
+
+/* dojo show page */
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+thead {
+    background-color: #01987A;
+    color: white;
+}
+
+th {
+    text-align: left;
+    padding: 2px 30px 2px 0px;
+}
+
+.color1:hover,
+.color2:hover {
+    font-weight: bold;
+    filter: brightness(90%);
+}
+
+.color1 {
+    background-color: #F3F3F3;
+    color: #36A58D;
+}
+
+.color2 {
+    background-color: #FFFFFF;
+    color: black;
+}
+
+#show-table {
+    margin-bottom: 20px;
+}
+
+#show-container {
+    margin: 20px;
+}
+
+#show-container>h1 {
+    margin-bottom: 20px;
+}
