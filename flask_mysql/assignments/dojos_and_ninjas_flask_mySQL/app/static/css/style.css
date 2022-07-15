@@ -3,3 +3,32 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* dojos page */
+
+.columns {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 10px;
+}
+
+.columns h1 {
+    margin-bottom: 20px;
+}
+
+#left-col form>input[type='submit'] {
+    display: block;
+    margin-top: 20px;
+}
+
+#all-dojo-container {
+    border: 2px solid black;
+    margin-bottom: 20px;
+    min-width: 200px;
+}
+
+#all-dojo-container>a {
+    display: block;
+}
+
+/* #left-col>a {} */
