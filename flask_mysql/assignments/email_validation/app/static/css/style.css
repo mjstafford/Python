@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: burlywood;
+    margin: 1rem;
+}
+
+.error-message,
+.success-message {
+    background-color: red;
+    border: 2px solid black;
+    width: fit-content;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.success-message {
+    background-color: green;
+}
+
+li {
+    list-style: none;
+    margin-left: 2rem;
+}
+
+#main {
+    margin-bottom: .2rem;
+}

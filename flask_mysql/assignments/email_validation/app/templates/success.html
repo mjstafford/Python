@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Validation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css' ) }}">
+</head>
+
+<body>
+    <!-- where flashed messages will go -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages%}
+    {%for message in messages%}
+    <p class="success-message">{{message}}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <!-- where flashed messages will go -->
+    <div id="main">
+        <h2>Email Addresses Entered:</h2>
+        <ul>
+            {% for email in emails %}
+            <li>{{email.email}} - {{email.created_at}} <a href="/delete/{{email.id}}">Delete</a></li>
+            <!-- #can use dot notation since its a class instance -->
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="/">Home</a>
+
+</body>
+
+</html>
