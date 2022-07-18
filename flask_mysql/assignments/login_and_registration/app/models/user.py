@@ -23,7 +23,10 @@ class User:
     @classmethod
     def find_by_email(cls, data):
         query = "SELECT * FROM users WHERE users.email = %(email)s"
-        return connectToMySQL(DATABASE).query_db(query, data)
+        #refactor suggestion (WOULD REQUIRE OTHER CHANGES IN OTHER LOGIC SINCE CURRENTLY OTHER LOGIC ALL DEPENDS ON RECIEVING A LIST)
+            # return false if there are no users with that email
+            # otherwise, instanciate object here & return that
+        return connectToMySQL(DATABASE).query_db(query, data)   #this is currently the raw data
 
     @staticmethod
     def validate_user( user ):
@@ -70,7 +73,6 @@ class User:
 
         return is_valid
 
-    #maybe should not be in the user class??
     @staticmethod
     def validate_login(data):
         is_valid = True
@@ -80,6 +82,5 @@ class User:
         if len(results) == 0:
             flash(f'No user associated with {data["email"]}', "login")
             is_valid = False
-
 
         return is_valid
