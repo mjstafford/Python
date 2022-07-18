@@ -4,9 +4,15 @@
     box-sizing: border-box;
 }
 
-body {
+#index-container,
+#success-container {
     display: flex;
     justify-content: space-around;
+    background-color: blueviolet;
+    padding: 1rem;
+}
+
+#dashboard-container {
     background-color: blueviolet;
     padding: 1rem;
 }
@@ -55,4 +61,18 @@ input[type="submit"] {
     font-size: .75rem;
     margin-left: 1rem;
     color: red;
+}
+
+/* nav */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px black solid;
+}
+
+nav>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

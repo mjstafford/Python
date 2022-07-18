@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
 </head>
 
-<body>
+<body id="index-container">
     <div id="col-left">
         <form action="/new" method="post" id="register-form">
             {% with messages = get_flashed_messages(category_filter=["register"]) %}

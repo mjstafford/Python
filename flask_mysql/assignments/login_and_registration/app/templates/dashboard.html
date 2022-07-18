@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <title>Dashboard</title>
+</head>
+
+<body id="dashboard-container">
+    <nav>
+        <h1>CodingDojo Wall</h1>
+        <div>
+            <h2>Welcome!</h2>
+            <form action="/logout" method="post">
+                <input type="button" value="logout">
+            </form>
+        </div>
+    </nav>
+    <div class="col-left">
+
+    </div>
+    <div class="col-right">
+
+    </div>
+</body>
+
+</html>

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
 </head>
 
-<body>
+<body id="success-container">
     <div id="col-left">
         <h1>Welcome {{session.user_name}}</h1>
         <form action="\logout" method="post">

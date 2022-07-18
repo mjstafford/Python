@@ -62,4 +62,10 @@ def login():
     session["user_id"] = user_instance.id
     session["user_name"] = user_instance.first_name + " " + user_instance.last_name
 
-    return redirect("/success")
+    return redirect("/dashboard")
+    # return redirect("/success")   #removed for "private wall" assignment
+
+@app.route("/dashboard")
+def dashboard():
+
+    return render_template("dashboard.html")
