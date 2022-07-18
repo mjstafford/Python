@@ -1,6 +1,6 @@
-import flask from Flask, session
+from flask import Flask, session
 
 app=Flask(__name__)
 app.secret_key = "123"
 
-DATABASE = "login_and_registration"
+DATABASE = "users_schema"

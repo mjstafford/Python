@@ -5,5 +5,54 @@
 }
 
 body {
+    display: flex;
+    justify-content: space-around;
     background-color: blueviolet;
+    padding: 1rem;
+}
+
+#col-left,
+#col-right {
+    background-color: #34393E;
+    color: white
+}
+
+#col-left h2 {
+    color: #057BFF;
+}
+
+#col-right h2 {
+    color: #299F44;
+}
+
+#register-form,
+#login-form {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    padding: 10px;
+}
+
+#register-form>input,
+#login-form>input {
+    margin-bottom: 8px;
+}
+
+input[type="submit"] {
+    width: fit-content;
+    background-color: #057BFF;
+    color: white;
+    border-radius: .2rem;
+    border: 1px black solid;
+    padding: .2rem
+}
+
+#col-right input[type="submit"] {
+    background-color: #28A644;
+}
+
+.error-messages {
+    font-size: .75rem;
+    margin-left: 1rem;
+    color: red;
 }
