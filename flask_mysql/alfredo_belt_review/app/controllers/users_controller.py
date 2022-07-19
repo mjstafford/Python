@@ -1,40 +1,60 @@
-from flask import Flask, redirect, render_template, session, flash, request
 from app import app
-from app.models import user
+from flask import render_template, request, redirect,flash, session
+from app.models.user import User
+from flask_bcrypt import Bcrypt
+
+bcrypt = Bcrypt(app)
 
 @app.route("/")
-def home_page():
+def display_login():
     return render_template("index.html")
 
-@app.route("/user/new", methods=["POST"])
-def create_user():
-    is_valid_user = user.User.validate_user(request.form)
-    print("is valid user",is_valid_user)
-    if not is_valid_user:
-        redirect("/")
-    
-    #if everything is good, save the user!
-    id = user.User.save(request.form)
-    
-    session["user_id"] = id
-    session["user_first_name"] = request.form["first_name"]
-    return redirect("/recipes")    #change to recipes page
+@app.route("/user/registration", methods=["POST"])
+def process_registration():
+    #validate the registration form
+    if User.validate_registration (request.form) == False:
+        return redirect("/")
 
-@app.route("/login", methods=["POST"])
-def login_user():
-    is_valid_login = user.User.validate_login(request.form)
-    print("is valid login", is_valid_login)
-    if not is_valid_login:
-        redirect("/")
+    #validate if user already exists
+    user_exists = User.get_one_to_validate_email(request.form)
+    if user_exists != None:
+        flash("This email already exists!", "email_error")
+        return redirect("/")
     
-    my_user = user.User.find_user_by_email({"email": request.form["email"]})
+    data = {
+        **request.form,     #this deep copies one dict to this one
+        "password": bcrypt.generate_password_hash(request.form["password"])        # override anything we need to
+    }
+    print(data)
 
-    session["user_id"] = my_user.id
-    session["user_first_name"] = my_user.first_name
+    #if new user, create the user via SAVE method
+    user_id = User.create( data )                 # <this data dict has hashed password
 
+    session["first_name"] = data["first_name"]
+    session["email"] = data["email"]
+    session["id"] = user_id
+    
     return redirect("/recipes")
 
-@app.route("/logout")
-def logout():
-    session.clear()
-    return render_template("index.html")
+@app.route("/user/login", methods=["POST"])
+def process_login():
+    current_user = User.get_one_to_validate_email(request.form)
+    if current_user != None:
+        if not bcrypt.check_password_hash(current_user.password, request.form["password"]):
+            flash("Wrong credientials", "password_login_error")
+            return redirect("/")
+
+        session["first_name"] = current_user.first_name
+        session["email"] = current_user.email
+        session["id"] = current_user.id
+
+        return redirect("/recipes")
+    else:
+        flash("Wrong credientials", "password_login_error")
+        return redirect("/")
+
+@app.route("/recipes")
+def display_recipes():
+    if "email" not in session:  #if user was created or loged in, they get in if not... redirect!
+        return redirect ("/")
+    return render_template("recipes.html")

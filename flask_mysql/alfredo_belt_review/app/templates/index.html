@@ -14,23 +14,27 @@
     <div class="container">
         <div class="col-l">
             <h2>Register</h2>
-            <form action="/user/new" method="post">
-                {% with messages = get_flashed_messages(category_filter=["register"]) %}
-                {% for message in messages%}
-                <p>{{message}}</p>
-                {% endfor %}
-                {% endwith %}
+            <form action="/user/registration" method="post">
                 <div>
                     <label for="first_name">First Name:</label>
                     <input type="text" name="first_name" id="first_name">
+                    {% for message in get_flashed_messages(category_filter=["first_name_error"]) %}
+                    {{message}}
+                    {% endfor%}
                 </div>
                 <div>
                     <label for="last_name">Last Name:</label>
                     <input type="text" name="last_name" id="last_name">
+                    {% for message in get_flashed_messages(category_filter=["last_name_error"]) %}
+                    {{message}}
+                    {% endfor%}
                 </div>
                 <div>
                     <label for="email">Email:</label>
                     <input type="email" name="email" id="email">
+                    {% for message in get_flashed_messages(category_filter=["email_error"]) %}
+                    {{message}}
+                    {% endfor%}
                 </div>
                 <div>
                     <label for="password">Password:</label>
@@ -39,6 +43,9 @@
                 <div>
                     <label for="password_confirm">Confirm PW:</label>
                     <input type="password" name="password_confirm" id="password_confirm">
+                    {% for message in get_flashed_messages(category_filter=["password_error"]) %}
+                    {{message}}
+                    {% endfor%}
                 </div>
 
                 <input type="submit" value="Submit">
@@ -48,16 +55,14 @@
         <br>
         <br>
         <div class="col-r">
-            {% with messages = get_flashed_messages(category_filter=["login"]) %}
-            {% for message in messages%}
-            <p>{{message}}</p>
-            {% endfor %}
-            {% endwith %}
             <h2>Log in</h2>
-            <form action="/login" method="post">
+            <form action="/user/login" method="post">
                 <div>
                     <label for="email">Email:</label>
                     <input type="email" name="email" id="email">
+                    {% for message in get_flashed_messages(category_filter=["password_login_error"]) %}
+                    {{message}}
+                    {% endfor%}
                 </div>
                 <div>
                     <label for="password">Password:</label>

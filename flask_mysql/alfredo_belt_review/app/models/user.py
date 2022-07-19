@@ -1,13 +1,6 @@
-from flask import flash
 from app.config.mysqlconnection import connectToMySQL
-from app import DATABASE,app
-import re
-
-from flask_bcrypt import Bcrypt
-bcrypt = Bcrypt(app)
-
-EMAIL_REGEX = re.compile(r'^[a-zA-z0-9.+_-]+@[a-zA-z0-9.+_-]+\.[a-zA-z]+$')
-
+from flask import flash
+from app import EMAIL_REGEX, DATABASE
 
 class User:
     def __init__(self, data):
@@ -20,67 +13,40 @@ class User:
         self.updated_at = data["updated_at"]
 
     @classmethod
-    def save(cls, data):
-        password_hashed = bcrypt.generate_password_hash(data["password"])
-        data = {
-            **data,
-            "password": password_hashed
-        }
-        query = "INSERT INTO users (first_name, last_name, email, password) VALUES (%(first_name)s,%(last_name)s,%(email)s,%(password)s);"
-        return connectToMySQL(DATABASE).query_db(query, data)
+    def get_one_to_validate_email(cls, data):
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+        result = connectToMySQL(DATABASE).query_db(query, data) #raw data
+
+        if len(result) > 0:     #check to see if there are results
+            return cls(result[0])
+
+        return False
 
     @classmethod
-    def find_user_by_email(cls, data):
-        query = "SELECT * FROM users WHERE users.email = %(email)s;"
-        result = connectToMySQL(DATABASE).query_db(query, data)
-        
-        if len(result) == 0:
-            return False
-
-        user = User(result[0]) #returns an actual user instance!
-        return user
-
+    def create(cls, data):
+        query = "INSERT INTO users (first_name, last_name, email, password) VALUES (%(first_name)s,%(last_name)s,%(email)s,%(password)s)"
+        result_id = connectToMySQL(DATABASE).query_db(query, data)
+        return result_id
 
     @staticmethod
-    def validate_user(data):
+    def validate_registration(data):
         is_valid = True
 
         if len(data["first_name"]) < 2:
-            flash("first name must be at least 2 characters", "register")
-            is_valid = False
+             flash("Your first name needs to have at least 2 chars", "first_name_error")
+             is_valid = False
+
         if len(data["last_name"]) < 2:
-            flash("last name must be at least 2 characters", "register")
-            is_valid = False
+             flash("Your last name needs to have at least 2 chars", "last_name_error")
+             is_valid = False
 
         if not EMAIL_REGEX.match(data["email"]):
-            flash("incorrect email format", "register")
-            is_valid = False
+             flash("Invalid email", "email_error")
+             is_valid = False
 
         if data["password"] != data["password_confirm"]:
-            flash("passwords didn't match", "register")
-            is_valid = False
-
-        if User.find_user_by_email({"email": data["email"]}):  #must only send email
-            flash("user is already in system", "register")
-            is_valid = False
-
-        print("is valid:", is_valid)
-        return is_valid
-
-
-    @staticmethod
-    def validate_login(data):
-        is_valid = True
-
-        user = User.find_user_by_email({"email": data["email"]})
-
-        if not user:
-            flash("Invalid user/password", "login")
-            is_valid = False
-
-        elif not bcrypt.check_password_hash(user.password, data["password"]):
-            flash("Invalid user / password", "login")
-            is_valid = False
+             flash("passwords do not match", "password_error")
+             is_valid = False
 
         return is_valid
 
