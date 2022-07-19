@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{{ url_for("static", filename="css/style.css" ) }}'>
+    <title>Belt Review</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome, {{ session["first_name"] }}</h1>
+
+        <h2>{{current_recipe.name}}</h2>
+        <h2>POSTED BY: {{current_recipe.user.first_name}}</h2>
+        <h2>Description: {{current_recipe.description}}</h2>
+        <h2>instructions: {{current_recipe.instructions}}</h2>
+        <h2>under 30 mins: {{ "Yes" if current_recipe.under_thirty == 1 else "No"}}</h2>
+        <h2>Date made: {{ current_recipe.date_made }}</h2>
+    </div>
+</body>
+
+</html>

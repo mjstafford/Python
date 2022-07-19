@@ -17,6 +17,7 @@ def process_registration():
 
     #validate if user already exists
     user_exists = User.get_one_to_validate_email(request.form)
+    print(user_exists)
     if user_exists != None:
         flash("This email already exists!", "email_error")
         return redirect("/")
@@ -53,8 +54,3 @@ def process_login():
         flash("Wrong credientials", "password_login_error")
         return redirect("/")
 
-@app.route("/recipes")
-def display_recipes():
-    if "email" not in session:  #if user was created or loged in, they get in if not... redirect!
-        return redirect ("/")
-    return render_template("recipes.html")

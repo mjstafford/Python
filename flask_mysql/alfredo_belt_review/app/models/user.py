@@ -18,9 +18,10 @@ class User:
         result = connectToMySQL(DATABASE).query_db(query, data) #raw data
 
         if len(result) > 0:     #check to see if there are results
-            return cls(result[0])
+            current_user = cls(result[0])
+            return current_user
 
-        return False
+        return None
 
     @classmethod
     def create(cls, data):
