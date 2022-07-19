@@ -15,7 +15,7 @@
         <div class="header">
             <h2>All posted Recipes:</h2>
             <div class="link">
-                <a href="/recipes/new">+ Create</a>
+                <a href="/display/recipe/create">+ Create</a>
                 <a href="/logout">logout</a>
             </div>
         </div>
@@ -24,9 +24,10 @@
                 <th>Name</th>
                 <th>Under 30</th>
                 <th>Posted By</th>
+                <th>Action</th>
             </thead>
             <tbody>
-                {% for recipe in recipes %}
+                {% for recipe in list_recipes %}
                 {% if loop.index % 2 == 0 %}
                 <tr class="color1">
                     {% else %}
@@ -34,6 +35,14 @@
                     {% endif %}
                     <td>{{recipe.name}}</td>
                     <td>{{ "Yes" if recipe.under_thirty == 1 else "No"}}</td>
+                    <td>{{recipe.user.first_name}} {{recipe.user.last_name}}</td>
+                    <td>
+                        <a href="/recipes/{{recipe.id}}">View Recipe</a> |
+                        {% if session["user_id"] == recipe.user.id %}
+                        <a href="/recipes/{{recipe.id}}/update">Edit</a> |
+                        <a href="/">Delete</a>
+                    </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </tbody>
