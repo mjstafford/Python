@@ -26,6 +26,29 @@
     justify-content: space-around;
 }
 
+.col-l,
+.col-r {
+    background-color: rgb(15, 77, 138);
+    padding: 1rem;
+}
+
+.col-l>form>div,
+.col-r>form>div {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px
+}
+
+.col-l>form>div input,
+.col-r>form>div input {
+    margin-bottom: .5rem;
+}
+
+span {
+    color: red;
+    font-size: .8rem;
+}
+
 .recipe-container {
     display: flex;
     margin: 0 auto;

@@ -18,31 +18,39 @@
                 <div>
                     <label for="first_name">First Name:</label>
                     <input type="text" name="first_name" id="first_name">
+                </div>
+                <span>
                     {% for message in get_flashed_messages(category_filter=["first_name_error"]) %}
                     {{message}}
                     {% endfor%}
-                </div>
+                </span>
                 <div>
                     <label for="last_name">Last Name:</label>
                     <input type="text" name="last_name" id="last_name">
+                </div>
+                <span>
                     {% for message in get_flashed_messages(category_filter=["last_name_error"]) %}
                     {{message}}
                     {% endfor%}
-                </div>
+                </span>
                 <div>
                     <label for="email">Email:</label>
                     <input type="email" name="email" id="email">
+                </div>
+                <span>
                     {% for message in get_flashed_messages(category_filter=["email_error"]) %}
                     {{message}}
                     {% endfor%}
-                </div>
+                </span>
                 <div>
                     <label for="password">Password:</label>
                     <input type="password" name="password" id="password">
+                </div>
+                <span>
                     {% for message in get_flashed_messages(category_filter=["password_error"]) %}
                     {{message}}
                     {% endfor%}
-                </div>
+                </span>
                 <div>
                     <label for="password_confirm">Password:</label>
                     <input type="password" name="password_confirm" id="password_confirm">
