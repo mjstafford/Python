@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Share</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <h1>Recipe Share</h1>
+    <div class="container">
+        <div class="col-l">
+            <h2>Register</h2>
+            <form action="/user/register" method="post">
+                <div>
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name" id="first_name">
+                    {% for message in get_flashed_messages(category_filter=["first_name_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </div>
+                <div>
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name" id="last_name">
+                    {% for message in get_flashed_messages(category_filter=["last_name_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email">
+                    {% for message in get_flashed_messages(category_filter=["email_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password">
+                    {% for message in get_flashed_messages(category_filter=["password_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </div>
+                <div>
+                    <label for="password_confirm">Password:</label>
+                    <input type="password" name="password_confirm" id="password_confirm">
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <div class="col-r">
+            <h2>Log in</h2>
+            <form action="/login" method="post">
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email">
+                    {% for message in get_flashed_messages(category_filter=["password_login_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    /* margin-left: 20px; */
+}
+
+.links {
+    display: flex;
+    gap: 1rem;
+    margin-right: 20px;
+}
+
+.header-title {
+    display: flex;
+    justify-content: space-around;
+}
+
+.recipe-container {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    width: 22rem;
+    border: 2px solid black;
+}
+
+.recipe-container>div {
+    display: flex;
+    justify-content: space-between;
+}
