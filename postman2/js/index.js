@@ -1,5 +1,7 @@
 console.log("connection test")
 
+//some sites require API key
+//Also may require header or other information
 const API_KEY = "the_real_api_key_here"
 
 async function handleNewsRequest(event) {
