@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>News Org Clien</title>
+</head>
+
+<body>
+    <form class="newsForm" onsubmit="handleNewsRequest(event)">
+        <div>
+            <label for="searchTerm">Type anything to search for news:</label>
+            <input type="text" name="searchTerm" id="searchTerm">
+        </div>
+        <div>
+            <label for="pageSize">How many news do you want to display:</label>
+            <input type="number" name="pageSize" id="pageSize">
+        </div>
+        <input type="submit" value="Search">
+    </form>
+
+    <div class="results">
+
+    </div>
+
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
