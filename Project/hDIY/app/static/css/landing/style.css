@@ -4,10 +4,11 @@
     box-sizing: border-box;
 }
 
-/* #main {
-    background-image: url("../../img/pexels-la-miko-3616764.jpg");
+body {
     height: 100vh;
-} */
+    display: flex;
+    flex-direction: column;
+}
 
 form {
     display: flex;

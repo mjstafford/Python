@@ -1,0 +1,21 @@
+<body>
+    <nav id="nav-home">
+        <img src="static/img/coding_dojo.png" alt="" width="50rem">
+        <h1>H-DIY</h1>
+
+        <div>
+            <p>Welcome, {{session["first_name"]}}</p>
+            <div id="nav-home-links">
+                <a href="#">
+                    <img src="../static/img/notification-bell.png" alt="user image">
+                </a>
+                <a href="#">
+                    <img src="../static/img/userImg.svg" alt="user image">
+                </a>
+                <a href="/logout">
+                    <button id="logout-btn">logout</button>
+                </a>
+            </div>
+        </div>
+    </nav>
+</body>

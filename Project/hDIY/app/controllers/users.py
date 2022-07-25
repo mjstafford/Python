@@ -48,3 +48,7 @@ def sign_in_page():
     session["user_email"] = current_user.email
 
     return redirect("/home")
+
+@app.route("/home")
+def home_page():
+    return render_template("home.html")
