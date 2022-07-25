@@ -3,3 +3,99 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* #main {
+    background-image: url("../../img/pexels-la-miko-3616764.jpg");
+    height: 100vh;
+} */
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2rem .5rem 2rem;
+}
+
+#login-form form {
+    gap: 10px;
+}
+
+#register-form form {
+    gap: 5px;
+}
+
+#login-form,
+#register-form {
+    margin: 0 auto;
+    border: 1px solid black;
+    max-width: 20rem;
+    box-shadow: 0px 0px 10px black;
+}
+
+#register-form h2,
+#login-form h2 {
+    border-bottom: 2px solid black;
+}
+
+#login-form a {
+    align-self: end;
+    margin-bottom: 1rem;
+}
+
+#password-container {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #767676;
+    border-radius: 0.15rem;
+}
+
+#password-container>input {
+    border: none;
+    padding-right: 1rem;
+    flex: 1;
+}
+
+#password-container>p {
+    align-self: center;
+    font-size: .5rem;
+    position: relative;
+    right: 1rem;
+}
+
+.hidden {
+    display: none;
+    /* display: block; */
+}
+
+.show {
+    display: block;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 20rem;
+    gap: 1rem
+}
+
+#city-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#state-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 3rem;
+}
+
+#signup-btn {
+    margin: 2rem 0 1rem 0;
+}
+
+span {
+    color: red;
+    font-size: .75rem;
+    margin: 0;
+}

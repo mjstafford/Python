@@ -10,7 +10,150 @@
 </head>
 
 <body>
-    <h1>Landing page</h1>
+    {% include "navbar.html" %}
+    <div id="main">
+        <div id="login-form" class="show">
+            <form action="/login" method="post">
+                <h2>Sign in</h2>
+                {% for message in get_flashed_messages(category_filter=["email_login_error"]) %}
+                <span class="error-message">
+                    {{message}}
+                </span>
+                {% endfor%}
+                <input type="text" name="email" placeholder="email">
+                {% for message in get_flashed_messages(category_filter=["password_login_error"]) %}
+                <span class="error-message">
+                    {{message}}
+                </span>
+                {% endfor%}
+                <input type="password" name="password" placeholder="password" class="password-field">
+                <div>
+                    <input type="checkbox" name="password-toggle" id="password-toggle" onclick="passwordToggle()">
+                    <label for="password-toggle">show password</label>
+                </div>
+                <input type="submit" value="Sign in">
+                <a href="#" onclick="registerForm()">Sign up</a>
+            </form>
+        </div>
+
+        <div id="register-form" class="hidden">
+            <form action="/register" method="post">
+                <h2>Sign up</h2>
+                <span class="error-message">
+                    {% for message in get_flashed_messages(category_filter=["first_name_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </span>
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name" placeholder="First Name">
+
+                <span class="error-message">
+                    {% for message in get_flashed_messages(category_filter=["last_name_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </span>
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" placeholder="Last Name">
+
+                <span class="error-message">
+                    {% for message in get_flashed_messages(category_filter=["email_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </span>
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder="email">
+
+                <span class="error-message">
+                    {% for message in get_flashed_messages(category_filter=["city_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </span>
+                <span class="error-message">
+                    {% for message in get_flashed_messages(category_filter=["state_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </span>
+                <div class="container">
+                    <div id="city-container">
+                        <label for="city">City:</label>
+                        <input type="text" name="city" placeholder="city" id="city">
+                    </div>
+                    <div id="state-container">
+                        <label for="state">State:</label>
+                        <select name="state">
+                            <option value="" selected disabled>-</option>
+                            <option value="AK">AK</option>
+                            <option value="AL">AL</option>
+                            <option value="AR">AR</option>
+                            <option value="AZ">AZ</option>
+                            <option value="CA">CA</option>
+                            <option value="CO">CO</option>
+                            <option value="CT">CT</option>
+                            <option value="DC">DC</option>
+                            <option value="DE">DE</option>
+                            <option value="FL">FL</option>
+                            <option value="GA">GA</option>
+                            <option value="HI">HI</option>
+                            <option value="IA">IA</option>
+                            <option value="ID">ID</option>
+                            <option value="IL">IL</option>
+                            <option value="IN">IN</option>
+                            <option value="KS">KS</option>
+                            <option value="KY">KY</option>
+                            <option value="LA">LA</option>
+                            <option value="MA">MA</option>
+                            <option value="MD">MD</option>
+                            <option value="ME">ME</option>
+                            <option value="MI">MI</option>
+                            <option value="MN">MN</option>
+                            <option value="MO">MO</option>
+                            <option value="MS">MS</option>
+                            <option value="MT">MT</option>
+                            <option value="NC">NC</option>
+                            <option value="ND">ND</option>
+                            <option value="NE">NE</option>
+                            <option value="NH">NH</option>
+                            <option value="NJ">NJ</option>
+                            <option value="NM">NM</option>
+                            <option value="NV">NV</option>
+                            <option value="NY">NY</option>
+                            <option value="OH">OH</option>
+                            <option value="OK">OK</option>
+                            <option value="OR">OR</option>
+                            <option value="PA">PA</option>
+                            <option value="RI">RI</option>
+                            <option value="SC">SC</option>
+                            <option value="SD">SD</option>
+                            <option value="TN">TN</option>
+                            <option value="TX">TX</option>
+                            <option value="UT">UT</option>
+                            <option value="VA">VA</option>
+                            <option value="VT">VT</option>
+                            <option value="WA">WA</option>
+                            <option value="WI">WI</option>
+                            <option value="WV">WV</option>
+                            <option value="WY">WY</option>
+                        </select>
+                    </div>
+                </div>
+
+                <span class="error-message">
+                    {% for message in get_flashed_messages(category_filter=["password_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </span>
+                <label for="password">Password:</label>
+                <input type="password" name="password" placeholder="password">
+
+                <label for="password_confirm">Confirm:</label>
+                <input type="password" name="password_confirm" id="password_confirm" placeholder="password">
+
+                <input type="submit" value="Sign up" id="signup-btn">
+            </form>
+        </div>
+    </div>
+
+    <script src="../static/js/script.js"></script>
 </body>
 
 </html>
