@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>H-DIY</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/landing/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Uchen&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -31,7 +34,7 @@
                     <input type="checkbox" name="password-toggle" id="password-toggle" onclick="passwordToggle()">
                     <label for="password-toggle">show password</label>
                 </div>
-                <input type="submit" value="Sign in">
+                <input type="submit" value="Sign in" id="signin-btn">
                 <a href="#" onclick="registerForm()">Sign up</a>
             </form>
         </div>

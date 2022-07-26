@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/landing/style.css') }}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/navbar/navhomestyle.css') }}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/footer_style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Uchen&display=swap" rel="stylesheet">
 </head>
 
 <body id="home-page-container">
@@ -35,10 +39,9 @@
                 <label for="yard">yard</label>
                 <input type="radio" id="yard" value="yard" name="filter">
             </div>
-            <input type="submit" value="Filter Results">
+            <input type="submit" value="Filter">
         </form>
 
-        <br>
         {% if filtered_blogs %}
         <h2>{{filtered_blogs[0].category.capitalize()}} Blogs</h2>
         <div id="filtered-container">
@@ -53,7 +56,6 @@
         </div>
         {% endif %}
 
-        <br>
         <h2>Favorite Blogs</h2>
         <div id="favorites-container">
             {% for index in [test, code, here, data] %}
@@ -69,19 +71,19 @@
             {% endfor %}
         </div>
 
-        <br>
+        {% if recent_blogs %}
         <h2>Recent Blogs</h2>
         <div id="recents-container">
-            {% for index in [test, code, here] %}
+            {% for blog in recent_blogs %}
             <div class="blog-card">
-                <h3>title here</h3>
+                <h3>{{blog.title}}</h3>
                 <img src="../static/img/pexels-la-miko-3616764.jpg" alt="">
                 <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi blanditiis illo sit error quis
-                    ipsa animi numquam voluptas delectus, aperiam voluptatum, temporibus tenetur ipsum quasi quia alias?
-                    Deleniti, qui similique!</p>
+                <p>{{blog.description}}</p>
             </div>
             {% endfor %}
+            {% endif %}
+
             <div class="blog-card final">
                 <h3>Find More...</h3>
                 <img src="../static/img/Coding_Dojo.png" alt="">
@@ -89,6 +91,7 @@
                 <p>click me to see more</p>
             </div>
         </div>
+    </div>
 
     </div>
     {% include "footer.html" %}

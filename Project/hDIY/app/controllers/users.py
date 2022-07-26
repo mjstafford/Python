@@ -57,22 +57,22 @@ def log_user_out():
 
 @app.route("/home")
 def home_page():
+    recent_blogs = Blog.sort_by_date()
     if "user_first_name" in session:
-        return render_template("home.html")
+        return render_template("home.html", recent_blogs=recent_blogs)
     return redirect("/")
 
 @app.route("/home/<string:filter>")
 def home_page_filtered(filter):
+    recent_blogs = Blog.sort_by_date()
+
     data = {
         "name" : filter
     }
-    print(data)
     filtered_results = Blog.find_by_category(data)
-    print("HERE")
-    print(filtered_results)
 
     if "user_first_name" in session:
-        return render_template("home.html", filtered_blogs=filtered_results)
+        return render_template("home.html", filtered_blogs=filtered_results, recent_blogs=recent_blogs)
     return redirect("/")
 
 # @app.route("/blog/filter", methods=["POST"])

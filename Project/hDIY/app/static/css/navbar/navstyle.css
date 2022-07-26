@@ -23,15 +23,22 @@ h1 {
 }
 
 button {
-    background-color: #605145;
-    color: #ffb700;
+    align-self: center;
+    padding: 0px 8px;
+    border: 1px solid rgb(0, 98, 255);
+    box-shadow: 0 0 2px rgb(0 26 255);
+    background-color: #1DA1F2;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+
     padding: .4rem .8rem;
     border-radius: .5rem;
     border: none;
+
 }
 
 button:hover {
-    background-color: #512F14;
-    color: #ffb700;
     cursor: pointer;
+    filter: brightness(90%);
 }

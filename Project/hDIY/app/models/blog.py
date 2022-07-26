@@ -22,3 +22,19 @@ class Blog:
             all_blogs.append(curr_blog)
 
         return all_blogs
+
+    @classmethod
+    def sort_by_date(cls):
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        query = "SELECT * from blogs ORDER BY created_at LIMIT 5;"
+        results = connectToMySQL(DATABASE).query_db(query)
+        print("HELLO RESULTS")
+        print(results)
+
+        recent_blogs = []
+        for row in results:
+            curr_blog = Blog(row)
+            recent_blogs.append(curr_blog)
+
+        print(recent_blogs)
+        return recent_blogs
