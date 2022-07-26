@@ -99,7 +99,8 @@ form {
 }
 
 #signup-btn,
-#signin-btn {
+#signin-btn,
+#new-blog-btn {
     margin: 2rem 0 1rem 0;
     /* align-self: center; */
     padding: 0px 8px;
@@ -111,7 +112,8 @@ form {
     text-decoration: none;
 }
 
-#signup-btn:hover {
+#signup-btn:hover,
+#new-blog-btn:hover {
     cursor: pointer;
     filter: brightness(90%);
 }
@@ -140,7 +142,12 @@ span {
     flex-direction: column;
 }
 
-#filters-form>input[type="submit"] {
+#filters-form>span>a {
+    text-decoration: none;
+}
+
+#filters-form>span>input[type="submit"],
+#filters-form>span>a {
     background-color: #134a8f;
     border: none;
     color: white;
@@ -149,7 +156,8 @@ span {
     transition: .3s;
 }
 
-#filters-form>input[type="submit"]:hover {
+#filters-form>span>input[type="submit"]:hover,
+#filters-form>span>a:hover {
     transform: scale(1.03);
     background-color: #47b933;
 }
@@ -175,6 +183,11 @@ span {
     font-size: 3rem;
     margin-bottom: 1rem;
     text-align: center;
+}
+
+.entire-card-link {
+    text-decoration: none;
+    color: #000000;
 }
 
 .blog-card {
@@ -239,4 +252,9 @@ span {
 
 .blog-card.final>img.not-favorite {
     background-color: transparent;
+}
+
+#blog-form-container {
+    min-width: 50rem;
+    margin: 0 auto;
 }

@@ -25,16 +25,32 @@ class Blog:
 
     @classmethod
     def sort_by_date(cls):
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         query = "SELECT * from blogs ORDER BY created_at LIMIT 5;"
         results = connectToMySQL(DATABASE).query_db(query)
-        print("HELLO RESULTS")
-        print(results)
 
         recent_blogs = []
         for row in results:
             curr_blog = Blog(row)
             recent_blogs.append(curr_blog)
 
-        print(recent_blogs)
         return recent_blogs
+
+    @staticmethod
+    def validate_blog(data):
+        is_valid = True
+
+        if data["title"] == "":
+            flash("title cannot be blank", "title_error")
+            is_valid = False
+        elif len(data["title"]) < 3:
+            flash("title needs to have at least 3 chars", "title_error")
+            is_valid = False
+
+        if data["description"] == "":
+            flash("description cannot be blank", "description_error")
+            is_valid = False
+        elif len(data["description"]) < 20:
+            flash("description needs to have at least 20 chars", "description_error")
+            is_valid = False
+
+        return is_valid

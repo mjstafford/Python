@@ -39,19 +39,25 @@
                 <label for="yard">yard</label>
                 <input type="radio" id="yard" value="yard" name="filter">
             </div>
-            <input type="submit" value="Filter">
+            <span>
+                <input type="submit" value="Filter">
+                <a href="/home">clear</a>
+
+            </span>
         </form>
 
         {% if filtered_blogs %}
         <h2>{{filtered_blogs[0].category.capitalize()}} Blogs</h2>
         <div id="filtered-container">
             {% for blog in filtered_blogs %}
-            <div class="blog-card">
-                <h3>{{blog.title}}</h3>
-                <img src="../static/img/pexels-la-miko-3616764.jpg" alt="">
-                <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
-                <p>{{blog.description}}</p>
-            </div>
+            <a href="blog/{{blog.id}}" class="entire-card-link">
+                <div class="blog-card">
+                    <h3>{{blog.title}}</h3>
+                    <img src="../static/img/pexels-la-miko-3616764.jpg" alt="">
+                    <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
+                    <p>{{blog.description}}</p>
+                </div>
+            </a>
             {% endfor %}
         </div>
         {% endif %}
@@ -59,15 +65,18 @@
         <h2>Favorite Blogs</h2>
         <div id="favorites-container">
             {% for index in [test, code, here, data] %}
-            <div class="blog-card">
-                <h3>title here</h3>
-                <img src="../static/img/pexels-la-miko-3616764.jpg" alt="">
-                <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
+            <a href="blog/blog.id" class="entire-card-link">
+                <div class="blog-card">
+                    <h3>title here</h3>
+                    <img src="../static/img/pexels-la-miko-3616764.jpg" alt="">
+                    <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi blanditiis illo sit error quis
-                    ipsa animi numquam voluptas delectus, aperiam voluptatum, temporibus tenetur ipsum quasi quia alias?
-                    Deleniti, qui similique!</p>
-            </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi blanditiis illo sit error quis
+                        ipsa animi numquam voluptas delectus, aperiam voluptatum, temporibus tenetur ipsum quasi quia
+                        alias?
+                        Deleniti, qui similique!</p>
+                </div>
+            </a>
             {% endfor %}
         </div>
 
@@ -75,12 +84,14 @@
         <h2>Recent Blogs</h2>
         <div id="recents-container">
             {% for blog in recent_blogs %}
-            <div class="blog-card">
-                <h3>{{blog.title}}</h3>
-                <img src="../static/img/pexels-la-miko-3616764.jpg" alt="">
-                <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
-                <p>{{blog.description}}</p>
-            </div>
+            <a href="blog/{{blog.id}}" class="entire-card-link">
+                <div class="blog-card">
+                    <h3>{{blog.title}}</h3>
+                    <img src="../static/img/pexels-la-miko-3616764.jpg" alt="">
+                    <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
+                    <p>{{blog.description}}</p>
+                </div>
+            </a>
             {% endfor %}
             {% endif %}
 

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H-DIY</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/landing/style.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/navbar/navhomestyle.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/footer_style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Uchen&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    {% include "navbar_home.html" %}
+    <div id="blog-form-container">
+        <div id="blog-form">
+            <form action="/blog/new/process" method="post">
+                <h1>Post Blog</h1>
+                <span class="error-message">
+                    {% for message in get_flashed_messages(category_filter=["title_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </span>
+                <label for="title">Title:</label>
+                <input type="text" name="title" placeholder="Title" value="{{ session['title'] if session['title'] }}">
+
+                <span class="error-message">
+                    {% for message in get_flashed_messages(category_filter=["description_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </span>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" placeholder="Description" rows="10">{{
+                    session['description'] if session['description'] }}</textarea>
+
+                <label for="category">Category:</label>
+                <select name="category" id="category">
+                    <option value="" disabled {% if 'cat_id' not in session %} selected {% endif %}>Select One</option>
+                    {% for category in categories%}
+                    <option value="{{category.id}}" {% if category.id==session["cat_id"] %} selected {% endif %}>
+                        {{category.name}}
+                    </option>
+                    {% endfor %}
+                </select>
+
+
+                <span class=" error-message">
+                    {% for message in get_flashed_messages(category_filter=["image_error"]) %}
+                    {{message}}
+                    {% endfor%}
+                </span>
+                <label for="image">image:</label>
+                <input type="file" name="image" placeholder="image">
+
+                <input type="submit" value="post" id="new-blog-btn">
+            </form>
+        </div>
+        <br>
+    </div>
+    {% include "footer.html" %}
+
+    <script src="../static/js/script.js"></script>
+</body>
+
+</html>
