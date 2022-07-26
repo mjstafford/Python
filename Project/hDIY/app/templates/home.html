@@ -13,7 +13,83 @@
 
 <body id="home-page-container">
     {% include "navbar_home.html" %}
-    <div id="main">d
+    <div id="main">
+        <form action="/blog/filter" method="post" id="filters-form">
+            <div>
+                <label for="kitchen">kitchen</label>
+                <input type="radio" id="kitchen" name="filter" value="kitchen">
+            </div>
+            <div>
+                <label for="bathroom">bathroom</label>
+                <input type="radio" id="bathroom" value="bathroom" name="filter">
+            </div>
+            <div>
+                <label for="electrical">electrical</label>
+                <input type="radio" id="electrical" value="electrical" name="filter">
+            </div>
+            <div>
+                <label for="plumbing">plumbing</label>
+                <input type="radio" id="plumbing" value="plumbing" name="filter">
+            </div>
+            <div>
+                <label for="yard">yard</label>
+                <input type="radio" id="yard" value="yard" name="filter">
+            </div>
+            <input type="submit" value="Filter Results">
+        </form>
+
+        <br>
+        {% if filtered_blogs %}
+        <h2>{{filtered_blogs[0].category.capitalize()}} Blogs</h2>
+        <div id="filtered-container">
+            {% for blog in filtered_blogs %}
+            <div class="blog-card">
+                <h3>{{blog.title}}</h3>
+                <img src="../static/img/pexels-la-miko-3616764.jpg" alt="">
+                <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
+                <p>{{blog.description}}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <br>
+        <h2>Favorite Blogs</h2>
+        <div id="favorites-container">
+            {% for index in [test, code, here, data] %}
+            <div class="blog-card">
+                <h3>title here</h3>
+                <img src="../static/img/pexels-la-miko-3616764.jpg" alt="">
+                <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
+
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi blanditiis illo sit error quis
+                    ipsa animi numquam voluptas delectus, aperiam voluptatum, temporibus tenetur ipsum quasi quia alias?
+                    Deleniti, qui similique!</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <br>
+        <h2>Recent Blogs</h2>
+        <div id="recents-container">
+            {% for index in [test, code, here] %}
+            <div class="blog-card">
+                <h3>title here</h3>
+                <img src="../static/img/pexels-la-miko-3616764.jpg" alt="">
+                <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi blanditiis illo sit error quis
+                    ipsa animi numquam voluptas delectus, aperiam voluptatum, temporibus tenetur ipsum quasi quia alias?
+                    Deleniti, qui similique!</p>
+            </div>
+            {% endfor %}
+            <div class="blog-card final">
+                <h3>Find More...</h3>
+                <img src="../static/img/Coding_Dojo.png" alt="">
+                <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
+                <p>click me to see more</p>
+            </div>
+        </div>
+
     </div>
     {% include "footer.html" %}
 

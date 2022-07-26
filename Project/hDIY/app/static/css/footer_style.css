@@ -2,8 +2,9 @@ footer {
     display: flex;
     justify-content: space-between;
     border-top: 2px solid black;
-    padding: 1rem .5rem;
-    position: absolute;
+    background-color: white;
+    padding: .2rem .5rem;
+    position: fixed;
     bottom: 0px;
     left: 40px;
     right: 40px;

@@ -15,7 +15,7 @@ body {
     gap: 2rem;
     border-bottom: 2px black solid;
     border-width: 90%;
-    margin-bottom: 2rem;
+    /* margin-bottom: 1.5rem; */
 }
 
 nav h1 {
@@ -52,6 +52,8 @@ nav>div>div>a>img {
 }
 
 #nav-home>img {
+    /* background-color: black;
+    margin: 0 1rem; */
     width: 50px
 }
 

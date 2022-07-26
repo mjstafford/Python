@@ -1,6 +1,7 @@
 from flask import Flask, session, flash, redirect, render_template, request
 from app import app
 from app.models.user import User
+from app.models.blog import Blog
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -49,6 +50,33 @@ def sign_in_page():
 
     return redirect("/home")
 
+@app.route("/logout")
+def log_user_out():
+    session.clear()
+    return redirect("/")
+
 @app.route("/home")
 def home_page():
-    return render_template("home.html")
+    if "user_first_name" in session:
+        return render_template("home.html")
+    return redirect("/")
+
+@app.route("/home/<string:filter>")
+def home_page_filtered(filter):
+    data = {
+        "name" : filter
+    }
+    print(data)
+    filtered_results = Blog.find_by_category(data)
+    print("HERE")
+    print(filtered_results)
+
+    if "user_first_name" in session:
+        return render_template("home.html", filtered_blogs=filtered_results)
+    return redirect("/")
+
+# @app.route("/blog/filter", methods=["POST"])
+# def process_category_filter():
+#     print(request.form)
+#     # filterd_results = Blog.find_by_category()
+#     return redirect("/home")
