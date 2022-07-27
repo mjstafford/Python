@@ -10,6 +10,11 @@ class Blog:
         self.user_id = data["user_id"]
 
     @classmethod
+    def save(cls, data):
+        query = "INSERT INTO blogs (title, description, user_id) VALUES (%(title)s,%(description)s,%(user_id)s)"
+        return connectToMySQL(DATABASE).query_db(query,data)
+
+    @classmethod
     def find_by_category(cls, data):
         query = "SELECT * from blogs LEFT JOIN categories_has_blogs ON blogs.id = blogs_id LEFT JOIN categories ON categories.id = categories_id WHERE name = %(name)s"
         results = connectToMySQL(DATABASE).query_db(query, data)
@@ -25,7 +30,7 @@ class Blog:
 
     @classmethod
     def sort_by_date(cls):
-        query = "SELECT * from blogs ORDER BY created_at LIMIT 5;"
+        query = "SELECT * from blogs ORDER BY created_at DESC LIMIT 5;"
         results = connectToMySQL(DATABASE).query_db(query)
 
         recent_blogs = []

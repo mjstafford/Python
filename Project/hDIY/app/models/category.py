@@ -20,3 +20,8 @@ class Category:
             all_categories.append(curr_category)
         
         return all_categories
+
+    @classmethod
+    def save(cls, data):
+        query = "INSERT INTO categories_has_blogs (categories_id, blogs_id) VALUES (%(categories_id)s, %(blogs_id)s)"
+        return connectToMySQL(DATABASE).query_db(query, data)

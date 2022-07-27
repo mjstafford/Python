@@ -38,15 +38,16 @@
                     session['description'] if session['description'] }}</textarea>
 
                 <label for="category">Category:</label>
-                <select name="category" id="category">
-                    <option value="" disabled {% if 'cat_id' not in session %} selected {% endif %}>Select One</option>
+                <div id="category-check-container">
                     {% for category in categories%}
-                    <option value="{{category.id}}" {% if category.id==session["cat_id"] %} selected {% endif %}>
-                        {{category.name}}
-                    </option>
+                    <div class="checkbox-container">
+                        <label for="{{category.name}}">{{category.name}}
+                            <input type="checkbox" name="{{category.name}}" id="{{category.name}}"
+                                value="{{category.id}}">
+                        </label>
+                    </div>
                     {% endfor %}
-                </select>
-
+                </div>
 
                 <span class=" error-message">
                     {% for message in get_flashed_messages(category_filter=["image_error"]) %}

@@ -258,3 +258,24 @@ span {
     min-width: 50rem;
     margin: 0 auto;
 }
+
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox-container>label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #134a8f;
+    border-radius: .5rem;
+    padding: 1rem;
+    width: 150px;
+}
+
+#category-check-container {
+    display: flex;
+    /* justify-content: center; */
+    gap: 40px
+}

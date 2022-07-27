@@ -20,13 +20,29 @@ def new_blog_form():
 
 @app.route("/blog/new/process", methods=["POST"])
 def process_new_blog():
-    
+    categories = ["kitchen", "bathroom", "plumbing", "electrical", "yard"]
+
     if not Blog.validate_blog(request.form):
         session["title"] = request.form["title"]
         session["description"] = request.form["description"]
-        session["cat_id"] = request.form["category"]
-        print(request.form["category"])
+        print(request.form)
         return redirect("/blog/new")
+
+    #else, save the blog & then save the blog id to the ALL categories selected
+    blog_data = {
+        **request.form,
+        "user_id": session["user_id"]
+    }
+    id = Blog.save(blog_data)
+
+    for category in categories:
+        if category in request.form:
+            data = {
+                "categories_id" : request.form[category],
+                "blogs_id" : id
+            }
+            Category.save(data)
+    
 
     return redirect('/home')
 
