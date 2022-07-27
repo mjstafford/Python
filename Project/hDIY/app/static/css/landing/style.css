@@ -226,6 +226,7 @@ span {
 
 .blog-card>p {
     margin-top: -2rem;
+    padding: 0 .5rem;
 }
 
 .blog-card>img.not-favorite {
@@ -242,7 +243,6 @@ span {
 
 .blog-card.final>p {
     text-align: center;
-
 }
 
 .blog-card.final>img {
