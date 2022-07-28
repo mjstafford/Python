@@ -6,6 +6,10 @@
     font-size: 1.25rem;
 }
 
+#login-nav>img {
+    width: 3rem;
+}
+
 #home-page-container,
 #show-page-body,
 #show-page-container {
@@ -97,7 +101,7 @@ form {
 #state-container {
     display: flex;
     flex-direction: column;
-    max-width: 3rem;
+    /* max-width: 3rem; */
 }
 
 #signup-btn,
@@ -207,6 +211,11 @@ span {
     text-align: center;
 }
 
+#main {
+    /* min-height: 100vh; */
+    margin-bottom: 2rem;
+}
+
 .entire-card-link {
     text-decoration: none;
     color: #000000;
@@ -219,14 +228,14 @@ span {
     box-shadow: 0 0 2px black;
     width: 15rem;
     height: 19rem;
-    transition: 0.2s;
+    transition: 0.3s;
     overflow: hidden;
 }
 
 .blog-card:hover {
     cursor: pointer;
     /* transform: translate(0, -10px); */
-    transform: scale(1.04);
+    transform: scale(1.04) translateY(-15px);
     box-shadow: 0px 0 10px black;
 }
 
@@ -235,6 +244,7 @@ span {
     color: white;
     border-bottom: 1px solid black;
     text-align: center;
+    padding: 5px 10px;
     height: 3rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -252,6 +262,19 @@ span {
 .blog-card>p {
     margin-top: -2rem;
     padding: 0 .5rem;
+    /* overflow: hidden; */
+    /* overflow-y: hidden;
+    text-overflow: ellipsis;
+    height: 8rem; */
+}
+
+.blog-card #final-p {
+    margin-top: 0rem;
+    padding: 0 .5rem;
+    /* overflow: hidden; */
+    /* overflow-y: hidden;
+    text-overflow: ellipsis;
+    height: 8rem; */
 }
 
 .blog-card>img.not-favorite {
@@ -280,7 +303,7 @@ img.not-favorite.red-heart-img {
 }
 
 .blog-card.final>img {
-    background-color: rgb(0, 76, 255);
+    background-color: black;
     text-align: center;
 }
 

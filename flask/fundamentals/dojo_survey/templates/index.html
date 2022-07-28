@@ -17,7 +17,7 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
-    <form class="form-container" action="/process" method="post">
+    <form class="form-container" action="/process" method="post" enctype="multipart/form-data">
         <div class="input-container">
             <label for="name">Your Name: </label>
             <input type="text" name="name" id="name">
@@ -44,6 +44,7 @@
             <label for="comment">Comment(optional):</label>
         </div>
         <textarea name="comment" id="comment" cols="30" rows="10" placeholder="optional comment..."></textarea>
+        <input type="file" name="file" id="file" accept=".jpg, .jpeg, .png">
         <div class="submit">
             <input type="submit" value="Submit">
         </div>

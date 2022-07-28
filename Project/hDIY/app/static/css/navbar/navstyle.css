@@ -16,6 +16,7 @@ nav {
     border-bottom: 2px black solid;
     border-width: 90%;
     margin-bottom: 2rem;
+    padding: 1rem 0rem .5rem 0rem;
 }
 
 h1 {
@@ -29,10 +30,9 @@ button {
     box-shadow: 0 0 2px rgb(0 26 255);
     background-color: #1DA1F2;
     color: white;
-    border-radius: 10px;
     text-decoration: none;
 
-    padding: .4rem .8rem;
+    /* padding: .4rem .8rem; */
     border-radius: .5rem;
     border: none;
 

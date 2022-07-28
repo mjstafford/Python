@@ -18,6 +18,27 @@ class Blog:
         return connectToMySQL(DATABASE).query_db(query,data)
 
     @classmethod
+    def find_all(cls):
+        query = "SELECT * FROM blogs ORDER BY created_at DESC;"
+        results = connectToMySQL(DATABASE).query_db(query)
+
+        all_blogs = []
+        for row in results:
+            curr_blog = Blog(row)
+
+            data =  {
+                "user_id": session["user_id"],
+                "blog_id": row["id"]
+                
+                }
+            is_favorite = Blog.is_favorite(data)
+            curr_blog.is_user_favorite = is_favorite
+
+            all_blogs.append(curr_blog)
+
+        return all_blogs
+
+    @classmethod
     def find_by_category(cls, data):
         query = "SELECT * FROM blogs LEFT JOIN categories_has_blogs ON blogs.id = categories_has_blogs.blogs_id LEFT JOIN categories ON categories.id = categories_id LEFT JOIN favorites ON blogs.id = favorites.blogs_id WHERE name = %(name)s"
         # query = "SELECT * from blogs LEFT JOIN categories_has_blogs ON blogs.id = blogs_id LEFT JOIN categories ON categories.id = categories_id WHERE name = %(name)s"
@@ -105,13 +126,15 @@ class Blog:
 
     @classmethod
     def sort_by_date(cls):
-        query = "SELECT * from blogs ORDER BY created_at DESC LIMIT 4;"
-        results = connectToMySQL(DATABASE).query_db(query)
+        query = "SELECT * FROM blogs LEFT JOIN favorites ON blogs.id = blogs_id WHERE users_id = %(users_id)s OR users_id is null ORDER BY created_at DESC LIMIT 4"
+        results = connectToMySQL(DATABASE).query_db(query, {"users_id": session["user_id"]})
 
         recent_blogs = []
         for row in results:
             curr_blog = Blog(row)
             recent_blogs.append(curr_blog)
+            if "users_id" in row and row["users_id"] == session["user_id"]:
+                curr_blog.is_user_favorite = True
 
         return recent_blogs
 

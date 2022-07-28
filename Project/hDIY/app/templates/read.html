@@ -7,14 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>H-DIY</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/landing/style.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/footer_style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Uchen&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    {% include "navbar.html" %}
     <div id="main">
+        {% include "navbar.html" %}
         <div id="login-form" class="show">
             <form action="/login" method="post">
                 <h2>Sign in</h2>
@@ -155,7 +156,7 @@
             </form>
         </div>
     </div>
-
+    {% include "footer.html" %}
     <script src="../static/js/script.js"></script>
 </body>
 

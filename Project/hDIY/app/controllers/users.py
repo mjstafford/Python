@@ -57,30 +57,28 @@ def log_user_out():
 
 @app.route("/home")
 def home_page():
-    recent_blogs = Blog.sort_by_date()
-    favorite_blogs = Blog.find_all_favorites_of_user({"user_id":session["user_id"]})
-    print("HERRRRRRRRRRRRRRRRRRRRRRRRRERASDF ASDFASDF ASD FA SDDF\n\n",favorite_blogs)
+    #clear form data if user leaves to homepage
+    if "title" in session or "description" in session:
+        session.pop("title")
+        session.pop("description")
 
     if "user_first_name" in session:
+        recent_blogs = Blog.sort_by_date()
+        favorite_blogs = Blog.find_all_favorites_of_user({"user_id":session["user_id"]})
+        # print("HERRRRRRRRRRRRRRRRRRRRRRRRRERASDF ASDFASDF ASD FA SDDF\n\n",favorite_blogs)
         return render_template("home.html", recent_blogs=recent_blogs, favorite_blogs=favorite_blogs)
     return redirect("/")
 
 @app.route("/home/<string:filter>")
 def home_page_filtered(filter):
-    recent_blogs = Blog.sort_by_date()
-    favorite_blogs = Blog.find_all_favorites_of_user({"user_id":session["user_id"]})
-
-    data = {
-        "name" : filter
-    }
-    filtered_results = Blog.find_by_category(data)
-
     if "user_first_name" in session:
+        recent_blogs = Blog.sort_by_date()
+        favorite_blogs = Blog.find_all_favorites_of_user({"user_id":session["user_id"]})
+
+        data = {
+            "name" : filter
+        }
+        filtered_results = Blog.find_by_category(data)
+
         return render_template("home.html", filtered_blogs=filtered_results, recent_blogs=recent_blogs, favorite_blogs=favorite_blogs)
     return redirect("/")
-
-# @app.route("/blog/filter", methods=["POST"])
-# def process_category_filter():
-#     print(request.form)
-#     # filterd_results = Blog.find_by_category()
-#     return redirect("/home")

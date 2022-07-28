@@ -21,27 +21,27 @@
         <form action="/blog/filter" method="post" id="filters-form">
             <div>
                 <input type="radio" id="kitchen" name="filter" value="kitchen">
-                <label for="kitchen">kitchen</label>
+                <label for="kitchen">Kitchen</label>
                 </input>
             </div>
             <div>
                 <input type="radio" id="bathroom" value="bathroom" name="filter">
-                <label for="bathroom">bathroom</label>
+                <label for="bathroom">Bathroom</label>
                 </input>
             </div>
             <div>
                 <input type="radio" id="electrical" value="electrical" name="filter">
-                <label for="electrical">electrical</label>
+                <label for="electrical">Electrical</label>
                 </input>
             </div>
             <div>
                 <input type="radio" id="plumbing" value="plumbing" name="filter">
-                <label for="plumbing">plumbing</label>
+                <label for="plumbing">Plumbing</label>
                 </input>
             </div>
             <div>
                 <input type="radio" id="yard" value="yard" name="filter">
-                <label for="yard">yard</label>
+                <label for="yard">Yard</label>
                 </input>
             </div>
             <span>
@@ -95,19 +95,24 @@
                 <div class="blog-card">
                     <h3>{{blog.title}}</h3>
                     <img src="https://images.pexels.com/photos/3990359/pexels-photo-3990359.jpeg" alt="">
+                    {% if blog.is_user_favorite %}
+                    <img src="../static/img/red-heart.png" alt="" class="not-favorite red-heart-img">
+                    {% else %}
                     <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
+                    {% endif %}
                     <p>{{blog.description}}</p>
                 </div>
             </a>
             {% endfor %}
             {% endif %}
-
-            <div class="blog-card final">
-                <h3>Find More...</h3>
-                <img src="../static/img/Coding_Dojo.png" alt="">
-                <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
-                <p>click me to see more</p>
-            </div>
+            <a href="/blogs" class="entire-card-link">
+                <div class="blog-card final">
+                    <h3>Find More...</h3>
+                    <img src="../static/img/Coding_Dojo.png" alt="">
+                    <!-- <img src="../static/img/heart-thin.png" alt="" class="not-favorite"> -->
+                    <p id="final-p">click to see all blogs</p>
+                </div>
+            </a>
         </div>
     </div>
 

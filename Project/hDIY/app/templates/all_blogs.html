@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H-DIY</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/landing/style.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/navbar/navhomestyle.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/footer_style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Uchen&display=swap" rel="stylesheet">
+</head>
+
+<body id="home-page-container">
+    {% include "navbar_home.html" %}
+
+    <h2>All Blogs</h2>
+    <div id="filtered-container">
+        {% for blog in all_blogs %}
+        <a href="/blog/{{blog.id}}" class="entire-card-link">
+            <div class="blog-card">
+                <h3>{{blog.title}}</h3>
+                <img src="https://images.pexels.com/photos/3990359/pexels-photo-3990359.jpeg" alt="">
+                {% if blog.is_user_favorite %}
+                <img src="../static/img/red-heart.png" alt="" class="not-favorite red-heart-img">
+                {% else %}
+                <img src="../static/img/heart-thin.png" alt="" class="not-favorite">
+                {% endif %}
+                <p>{{blog.description}}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+
+    {% include "footer.html" %}
+
+    <script src="../static/js/script.js"></script>
+</body>
+
+</html>
