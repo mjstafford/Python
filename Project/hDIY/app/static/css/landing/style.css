@@ -6,8 +6,10 @@
     font-size: 1.25rem;
 }
 
-#home-page-container {
-    background-color: aliceblue;
+#home-page-container,
+#show-page-body,
+#show-page-container {
+    background-color: white;
 }
 
 body {
@@ -142,6 +144,26 @@ span {
     flex-direction: column;
 }
 
+#filters-form>div:hover {
+    font-weight: bolder;
+}
+
+#filters-form>div input[type=radio] {
+    visibility: hidden;
+    position: fixed;
+    opacity: 0;
+}
+
+#filters-form>div input[type=radio]+label {
+    /* color: black; */
+    color: black;
+}
+
+#filters-form>div input[type=radio]:checked+label {
+    font-weight: bold;
+    color: red;
+}
+
 #filters-form>span>a {
     text-decoration: none;
 }
@@ -191,7 +213,7 @@ span {
 }
 
 .blog-card {
-    background-color: white;
+    background-color: #f6f7ff;
     border: 1px solid black;
     border-radius: .2rem;
     box-shadow: 0 0 2px black;
@@ -205,6 +227,7 @@ span {
     cursor: pointer;
     /* transform: translate(0, -10px); */
     transform: scale(1.04);
+    box-shadow: 0px 0 10px black;
 }
 
 .blog-card>h3 {
@@ -214,6 +237,8 @@ span {
     text-align: center;
     height: 3rem;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .blog-card>img {
@@ -240,6 +265,15 @@ span {
     left: 12rem;
     display: inline;
 }
+
+#favorites-container img.not-favorite {
+    filter: none;
+}
+
+img.not-favorite.red-heart-img {
+    filter: none;
+}
+
 
 .blog-card.final>p {
     text-align: center;
@@ -278,4 +312,71 @@ span {
     display: flex;
     /* justify-content: center; */
     gap: 40px
+}
+
+#show-page-container {
+    /* min-height: 100vh; */
+    margin: 0 auto;
+    width: 80%;
+}
+
+#blog-show-img {
+    min-width: 50rem;
+    max-width: 100rem;
+}
+
+#blog-show-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#blog-show-header>form {
+    padding: 0px;
+}
+
+#blog-show-header>h2 {
+    font-size: 2rem;
+}
+
+.show-category {
+    padding: 0 .5rem;
+    /* border: 1px solid black; */
+    border-radius: 1rem;
+}
+
+#blog-show-categories {
+    display: flex;
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+#cat-color-1 {
+    background-color: red;
+    color: white;
+}
+
+#cat-color-2 {
+    color: white;
+    background-color: green;
+}
+
+#cat-color-3 {
+    color: white;
+    background-color: blue;
+}
+
+#cat-color-4 {
+    color: white;
+    background-color: purple;
+}
+
+#cat-color-5 {
+    color: white;
+    background-color: grey;
+}
+
+#cat-color-6 {
+    color: white;
+    background-color: goldenrod;
 }

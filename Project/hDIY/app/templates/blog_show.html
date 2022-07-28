@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H-DIY</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/landing/style.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/navbar/navhomestyle.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/footer_style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Uchen&display=swap" rel="stylesheet">
+</head>
+
+<body id="show-page-body">
+    {% include "navbar_home.html" %}
+    <div id="show-page-container">
+        <div id="blog-show-header">
+            <form action="/update/favorite/{{blog.id}}" method="post">
+                {% if is_favorite%}
+                <input type="image" src="../static/img/red-heart.png" alt="Submit" width="40" height="40">
+                {% else%}
+                <input type="image" src="../static/img/heart-thin.png" alt="Submit" width="40" height="40">
+                {% endif %}
+            </form>
+            <h2>{{blog.title}}</h2>
+        </div>
+        <div id="blog-show-categories">
+            {% if blog.categories %}
+            {% for category in blog.categories %}
+            <p id="cat-color-{{category.id}}" class="show-category">{{category.name}}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <div id="show-blog-container">
+            <img src="https://images.pexels.com/photos/3990359/pexels-photo-3990359.jpeg" alt="" id="blog-show-img">
+            <p>{{blog.description}}</p>
+        </div>
+    </div>
+
+    {% include "footer.html" %}
+
+    <script src="../static/js/script.js"></script>
+</body>
+
+</html>

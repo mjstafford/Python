@@ -6,14 +6,16 @@
         <h1>H-DIY</h1>
 
         <div>
-            <p>Welcome, {{session["user_first_name"]}}</p>
-            <div id="nav-home-links">
+            <div>
+                <p>Welcome, {{session["user_first_name"]}}</p>
                 <a href="#">
                     <img src="../static/img/notification-bell.png" alt="user image">
                 </a>
                 <a href="#">
                     <img src="../static/img/userImg.svg" alt="user image">
                 </a>
+            </div>
+            <div id="nav-home-links">
                 <a href="/blog/new" id="add-blog-link">+</a>
                 <a href="/logout">
                     <button id="logout-btn">logout</button>

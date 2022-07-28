@@ -28,6 +28,7 @@ def process_new_blog():
         print(request.form)
         return redirect("/blog/new")
 
+    print(request.form)
     #else, save the blog & then save the blog id to the ALL categories selected
     blog_data = {
         **request.form,
@@ -46,3 +47,23 @@ def process_new_blog():
 
     return redirect('/home')
 
+@app.route("/update/favorite/<int:id>", methods=["POST"])
+def update_favorite(id):
+    #if blog is already favorite of user, remove it
+    # blog = find_by_id_with_categories({"id":id})
+    data = {
+        "blogs_id":id, 
+        "users_id": session["user_id"]
+    }
+    Blog.toggle_favorite(data)
+    return redirect(f"/blog/{id}")
+
+
+@app.route("/blog/<int:id>")
+def show_blog(id):
+    data = {
+        "user_id": session["user_id"],
+        "blog_id": id
+    }
+    is_favorite = Blog.is_favorite(data)
+    return render_template("blog_show.html", blog = Blog.find_by_id_with_categories({"id":id}), is_favorite = is_favorite)
