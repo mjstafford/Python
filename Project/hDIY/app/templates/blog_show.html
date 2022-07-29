@@ -31,7 +31,10 @@
         <div id="blog-show-categories">
             {% if blog.categories %}
             {% for category in blog.categories %}
+            {% if category.name != None %}
             <p id="cat-color-{{category.id}}" class="show-category">{{category.name}}</p>
+            {% endif %}
+
             {% endfor %}
             {% endif %}
         </div>
