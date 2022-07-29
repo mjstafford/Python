@@ -17,6 +17,8 @@
 
 <body id="show-page-body">
     {% include "navbar_home.html" %}
+
+    {% if blog %}
     <div id="show-page-container">
         <div id="blog-show-header">
             <form action="/update/favorite/{{blog.id}}" method="post">
@@ -48,6 +50,11 @@
             <p>{{blog.description}}</p>
         </div>
     </div>
+    {% else %}
+    <div>
+        <h2>No Blog exists</h2>
+    </div>
+    {% endif %}
 
     {% include "footer.html" %}
 
