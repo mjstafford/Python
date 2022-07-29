@@ -311,6 +311,10 @@ img.not-favorite.red-heart-img {
     background-color: transparent;
 }
 
+.blog-card #last-card-header {
+    background-color: #dc3838;
+}
+
 #blog-form-container {
     min-width: 50rem;
     margin: 0 auto;
