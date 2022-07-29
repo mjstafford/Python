@@ -8,13 +8,14 @@ class Blog:
         self.id = data["id"]
         self.title = data["title"]
         self.description = data["description"]
+        self.image_location = data["image_location"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
         self.user_id = data["user_id"]
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO blogs (title, description, user_id) VALUES (%(title)s,%(description)s,%(user_id)s)"
+        query = "INSERT INTO blogs (title, description, user_id, image_location) VALUES (%(title)s,%(description)s,%(user_id)s, %(image_location)s)"
         return connectToMySQL(DATABASE).query_db(query,data)
 
     @classmethod
@@ -40,18 +41,25 @@ class Blog:
 
     @classmethod
     def find_by_category(cls, data):
-        query = "SELECT * FROM blogs LEFT JOIN categories_has_blogs ON blogs.id = categories_has_blogs.blogs_id LEFT JOIN categories ON categories.id = categories_id LEFT JOIN favorites ON blogs.id = favorites.blogs_id WHERE name = %(name)s"
-        # query = "SELECT * from blogs LEFT JOIN categories_has_blogs ON blogs.id = blogs_id LEFT JOIN categories ON categories.id = categories_id WHERE name = %(name)s"
+        # query = "SELECT * FROM blogs LEFT JOIN categories_has_blogs ON blogs.id = categories_has_blogs.blogs_id LEFT JOIN categories ON categories.id = categories_id LEFT JOIN favorites ON blogs.id = favorites.blogs_id WHERE name = %(name)s"
+        query = "SELECT * FROM blogs LEFT JOIN categories_has_blogs ON blogs.id = categories_has_blogs.blogs_id LEFT JOIN categories ON categories.id = categories_id WHERE name = %(name)s"
         results = connectToMySQL(DATABASE).query_db(query, data)
 
         print("\nHERE\n",results)
         all_blogs = []
         for row in results:
             curr_blog = Blog(row)
+
             curr_blog.category = row["name"]
             all_blogs.append(curr_blog)
-            if "users_id" in row and row["users_id"] == session["user_id"]:
-                curr_blog.is_user_favorite = True
+            
+            fav_data =  {
+                "user_id": session["user_id"],
+                "blog_id": row["id"]
+                
+            }
+            is_favorite = Blog.is_favorite(fav_data)
+            curr_blog.is_user_favorite = is_favorite
 
         return all_blogs
 

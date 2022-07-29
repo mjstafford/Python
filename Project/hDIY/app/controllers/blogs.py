@@ -1,15 +1,19 @@
-from flask import Flask, session, flash, redirect, render_template, request
-from app import app
+from flask import Flask, session, flash, redirect, render_template, request, url_for
+from app import app, UPLOAD_FOLDER, ALLOWED_EXTENSIONS
 from app.models.user import User
 from app.models.blog import Blog
 from app.models.category import Category
 from flask_bcrypt import Bcrypt
+import os
+from werkzeug.utils import secure_filename
 
 bcrypt = Bcrypt(app)
 
 @app.route("/blog/filter", methods=["POST"])
 def process_category_filter():
-    return redirect(f"/home/{request.form['filter']}")
+    if "filter" in request.form:
+        return redirect(f"/home/{request.form['filter']}")
+    return redirect("/home")
 
 @app.route("/blog/new")
 def new_blog_form():
@@ -22,6 +26,8 @@ def new_blog_form():
 
 @app.route("/blog/new/process", methods=["POST"])
 def process_new_blog():
+    print("request form\n\n", request.form)
+    print("request files\n\n", request.files)
     categories = ["kitchen", "bathroom", "plumbing", "electrical", "yard"]
 
     if not Blog.validate_blog(request.form):
@@ -30,11 +36,28 @@ def process_new_blog():
         print(request.form)
         return redirect("/blog/new")
 
+    #save image to static folder
+    if 'file' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+    file = request.files['file']
+    # print("\n\n",request.files['file'],"\n\n")
+    # print("\n\n",request.files,"\n\n")
+
+    if file.filename == '':
+        flash('No selected file')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        file.filename = file.filename.replace(".", f"_{session['user_id']}.")
+        filename = secure_filename(file.filename) 
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
     print(request.form)
     #else, save the blog & then save the blog id to the ALL categories selected
     blog_data = {
         **request.form,
-        "user_id": session["user_id"]
+        "user_id": session["user_id"],
+        "image_location" : file.filename
     }
     id = Blog.save(blog_data)
 
@@ -46,9 +69,11 @@ def process_new_blog():
             }
             Category.save(data)
 
+
     #everything went through clear out the session
-    session.pop("title")
-    session.pop("description")
+    if "title" in session or "description" in session:
+        session.pop("title")
+        session.pop("description")
 
     return redirect('/home')
 
@@ -79,3 +104,9 @@ def show_all_blogs():
     if "user_first_name" not in session:
         return redirect("/")
     return render_template("all_blogs.html", all_blogs=Blog.find_all())
+
+
+#helper functions
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

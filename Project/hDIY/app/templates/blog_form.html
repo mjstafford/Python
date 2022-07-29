@@ -18,7 +18,7 @@
     {% include "navbar_home.html" %}
     <div id="blog-form-container">
         <div id="blog-form">
-            <form action="/blog/new/process" method="post">
+            <form action="/blog/new/process" method="post" enctype="multipart/form-data">
                 <h1>Post Blog</h1>
                 <span class="error-message">
                     {% for message in get_flashed_messages(category_filter=["title_error"]) %}
@@ -55,7 +55,7 @@
                     {% endfor%}
                 </span>
                 <label for="image">Image:</label>
-                <input type="file" name="image" placeholder="image">
+                <input type="file" name="file" id="file" accept=".jpg, .jpeg, .png">
 
                 <input type="submit" value="post" id="new-blog-btn">
             </form>

@@ -24,7 +24,13 @@
         <a href="/blog/{{blog.id}}" class="entire-card-link">
             <div class="blog-card">
                 <h3>{{blog.title}}</h3>
+
+                {% if blog.image_location %}
+                <img src="{{ url_for('static', filename='img/uploads/' + blog.image_location) }}" alt="">
+                {% else %}
                 <img src="https://images.pexels.com/photos/3990359/pexels-photo-3990359.jpeg" alt="">
+                {% endif %}
+
                 {% if blog.is_user_favorite %}
                 <img src="../static/img/red-heart.png" alt="" class="not-favorite red-heart-img">
                 {% else %}

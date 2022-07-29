@@ -37,7 +37,11 @@
         </div>
 
         <div id="show-blog-container">
+            {% if blog.image_location %}
+            <img src="{{ url_for('static', filename='img/uploads/' + blog.image_location) }}" alt="" id="blog-show-img">
+            {% else %}
             <img src="https://images.pexels.com/photos/3990359/pexels-photo-3990359.jpeg" alt="" id="blog-show-img">
+            {% endif %}
             <p>{{blog.description}}</p>
         </div>
     </div>

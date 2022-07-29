@@ -18,7 +18,7 @@ def allowed_file(filename):
 def main_page():
     return render_template("index.html")
 
-@app.route("/process", methods=["POST", "GET"])
+@app.route("/process", methods=["POST"])
 def post_page():
     #first validate
     print(request.form)
